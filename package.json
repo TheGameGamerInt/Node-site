@@ -4,7 +4,7 @@
   "description": "A webite made using Node.js",
   "main": "app.js",
   "scripts": {
-    "test": "test2"
+    "test": ""
   },
   "author": "",
   "license": "ISC",
