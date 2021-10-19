@@ -4,15 +4,19 @@
   "description": "A webite made using Node.js",
   "main": "app.js",
   "scripts": {
-    "test": ""
+    "test": "",
+    "start": "nodemon app.js"
   },
   "author": "Snorre",
   "license": "ISC",
   "dependencies": {
     "ejs": "^3.1.6",
+    "express": "^4.17.1",
     "mysql": "^2.18.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "nodemon": "^2.0.13"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TheGameGamerInt/Node-site.git"
