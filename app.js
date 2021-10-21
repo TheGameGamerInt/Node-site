@@ -13,21 +13,24 @@ app.use(express.static('public'));
 app.set('views', './views');
 app.set('view engine', 'ejs');
 
-app.get('', (req, res) => {
-  res.render('index', { text: 'Hey' })
-})
-
-app.get('/about', (req, res) => {
- res.render('about')
-})
-
-app.listen(port, () => console.log(port))
-
 var con = mysql.createConnection({
   host: "localhost",
   user: "Snorre",
   password: config.PASSWORD
 });
+
+app.get('', (req, res) => {
+  res.render('index', { text: url.parse(req.url, true).pathname})
+})
+
+app.get('/about', (req, res) => {
+ res.render('about')
+})
+app.get('*', (req, res) => {
+  res.redirect('/')
+ })
+ 
+app.listen(port, () => console.log(port))
 
 con.connect(function(err) {
   if (err) throw err;
