@@ -16,23 +16,27 @@ var con = mysql.createConnection({
 });
 con.connect(function (err) {
   if (err) throw err;
-  con.query("SHOW TABLES",function (err, result) {
+  con.query("DESCRIBE test",function (err, result) {
     if (err) throw err;
-    console.log(Object.getOwnPropertyNames(result))
-      console.log((result[1]))
+      console.log((result))
   });
 });
 
 function insert(table, columns, values) {
   if(Array.isArray(values[0])) {
     values.forEach(val => {
-      con.query(`INSERT INTO ${table} (${columns.toString()}) VALUES (${val.toString()})`)
+      con.query(`INSERT INTO ?? (??) VALUES (?)`, [table, columns.toString(), val.toString()], function (err, res) {
+        if (err) throw err;
+      })
     });
   } else {
-    con.query(`INSERT INTO ${table} (${columns.toString()}) VALUES (${values.toString()})`)
+    con.query('INSERT INTO ?? (??) VALUES (?)', [table, columns.toString(), values.toString()], function (err, res) {
+      if (err) throw err;
+      console.log("success!")
+    })
   }
 }
-
+insert("test", ['test'], ['Hello World'])
 
 app.use(express.static('public'));
 
